@@ -211,11 +211,16 @@ def award_points(request, id):
     except:
         raise decorators.CommandException(_("Invalid number of points to award."))
 
+    awarding_user = get_object_or_404(User, id=request.user.pk)
+
+    if points > awarding_user.reputation:
+        raise decorators.CommandException(_("Invalid number of points to award."))
+
     user = get_object_or_404(User, id=id)
 
     extra = dict(message=request.POST.get('message', ''), awarding_user=request.user.id, value=points)
 
-    BonusRepAction(user=request.user, extra=extra).save(data=dict(value=points, affected=user))
+    BonusRepAction(user=user, extra=extra).save(data=dict(value=points, affected=user))
 
     return {'commands': {
             'update_profile_karma': [user.reputation]

@@ -220,7 +220,7 @@ def award_points(request, id):
 
     extra = dict(message=request.POST.get('message', ''), awarding_user=request.user.id, value=points)
 
-    BonusRepAction(user=user, extra=extra).save(data=dict(value=points, affected=user))
+    BonusRepAction(user=request.user, extra=extra).save(data=dict(value=points, affected=user))
 
     return {'commands': {
             'update_profile_karma': [user.reputation]

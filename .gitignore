@@ -7,3 +7,4 @@ tmp/*
 
 osqa.wsgi
 settings_local.py
+wsgi.py

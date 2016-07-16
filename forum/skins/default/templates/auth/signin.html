@@ -33,7 +33,7 @@
             <input type="hidden" class="validate_email" name="validate_email" value="yes" />-->
         </form>
     {% endfor %}
-    {% if top_stackitem_providers %}
+    <!--{% if top_stackitem_providers %}
         <h3 class="or_label">{% trans 'Or...' %}</h3>
     {% endif %}
     <!--
@@ -43,12 +43,12 @@
         you and your login provider and you don't have to remember another one.
     {% endblocktrans %}
     </div>-->
-    {% if request.user.is_anonymous %}
+    <!--{% if request.user.is_anonymous %}
         <div style="width:600px;float:left;margin-bottom:5px;">
             <input type="checkbox" checked="checked" id="validate_email" />
             {% trans "Validate my email after I login." %}
         </div>
-    {% endif %}
+    {% endif %}-->
     <div id="bigicon_providers">
         {% for provider in bigicon_providers %}
             <div class="provider_logo big" name="{{ provider.id }}">
@@ -93,7 +93,7 @@
         <input type="hidden" class="validate_email" name="validate_email" value="yes" />
     </form>
     {% for provider in stackitem_providers %}
-        <h3 class="or_label">{% trans 'Or...' %}</h3>
+        <!--<h3 class="or_label">{% trans 'Or...' %}</h3>-->
         <form class="signin_form" method="POST" action="{% url "auth_provider_signin" provider=provider.id %}" accept-charset="utf-8">
             {% csrf_token %}
             {% include provider.stack_item_template %}
@@ -164,7 +164,7 @@
 {% endblock %}
 
 {% block sidebar %}
-<div class="boxC">
+<!--<div class="boxC">
     <h3 class="subtitle">{% trans "Why use OpenID?" %}</h3>
     <ul class="list-item">
         <li>
@@ -185,5 +185,5 @@
         <a href="http://openid.net/what/" target="_blank">{% trans "Find out more" %} </a><br/>
         <a href="http://openid.net/get/" target="_blank">{% trans "Get OpenID" %} </a>
     </p>
-</div>
+</div>-->
 {% endblock%}

@@ -3,8 +3,13 @@
 .settings
 .project
 log/django.osqa.log
+log/django.osqa.log
 tmp/*
 
 osqa.wsgi
 settings_local.py
 wsgi.py
+requirements.txt
+test.py
+*~
+

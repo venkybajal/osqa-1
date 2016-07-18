@@ -1,18 +1,3 @@
-DROP TABLE forum_mysqlftsindex;
-CREATE TABLE forum_mysqlftsindex (
-	id int NOT NULL AUTO_INCREMENT,
-	node_id int NOT NULL UNIQUE,
-	body longtext NOT NULL,
-	title varchar(300),
-	tagnames varchar(255),
-	PRIMARY KEY (id),
-	FOREIGN KEY (node_id) REFERENCES forum_node (id)   ON UPDATE CASCADE ON DELETE CASCADE,
-	FULLTEXT (body, title, tagnames),
-	FULLTEXT(body),
-	FULLTEXT(title),
-	FULLTEXT(tagnames)
-) ENGINE=`MyISAM`;
-
 ALTER TABLE forum_mysqlftsindex CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 delimiter |

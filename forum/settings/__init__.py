@@ -50,7 +50,7 @@ from accept import *
 from sitemaps import *
 
 __all__ = locals().keys()
-
+BADGES_SET = SettingSet('badges', _('Badges config'), _("Configure badges on your OSQA site."), 500)
 # Be able to import all module settings as well
 for k,v in get_modules_script_implementations('settings', BaseSetting).items():
    if not k in __all__:
@@ -58,6 +58,6 @@ for k,v in get_modules_script_implementations('settings', BaseSetting).items():
         exec "%s = v" % k
 
 
-BADGES_SET = SettingSet('badges', _('Badges config'), _("Configure badges on your OSQA site."), 500)
+
 
 

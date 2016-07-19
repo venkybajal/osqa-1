@@ -100,7 +100,8 @@
                     </td>
                 </tr>
                 {% endif %}
-
+		
+		{% if can_view_private %}
                 <tr>
                     <td colspan="2" style="text-align:right">
                         <a href="{% url "user_report" user.pk %}" class="ajax-command withprompt">
@@ -108,7 +109,7 @@
                         </a>
                     </td>
                 </tr>
-				<!--
+		{% endif %}ss		<!--
                 {% if votes_today_left %}
                 <tr>
                     <td>{% trans "todays unused votes" %}</td>

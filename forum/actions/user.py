@@ -73,7 +73,7 @@ class BonusRepAction(ActionProxy):
 
     def repute_users(self):
         self.repute(self._affected, self._value)
-
+	'''
         if self._value > 0:
             self._affected.message_set.create(
                     message=_("Congratulations, you have been awarded an extra %s reputation points.") % self._value +
@@ -81,6 +81,7 @@ class BonusRepAction(ActionProxy):
         else:
             messages.info(REQUEST_HOLDER.request, _("You have penalized %s in %s reputation points.") % (self._affected, self._value) +
                     '<br />%s' % self.extra.get('message', ''))
+	'''
 
     def describe(self, viewer=None):
         value = self.extra.get('value', _('unknown'))
@@ -111,13 +112,14 @@ class AwardPointsAction(ActionProxy):
     def repute_users(self):
         self.repute(self._affected, self._value)
         self.repute(self.user, -self._value)
-
+	'''
         self._affected.message_set.create(
                 message=_("Congratulations, you have been awarded an extra %(points)s reputation %(points_label)s on <a href=\"%(answer_url)s\">this</a> answer.") % {
                         'points': self._value,
                         'points_label': ungettext('point', 'points', self._value),
                         'answer_url': self.node.get_absolute_url()
-                    })
+                    })	
+	'''
 
     def describe(self, viewer=None):
         value = self.extra.get('value', _('unknown'))
@@ -163,12 +165,13 @@ class AwardAction(ActionProxy):
             self.user.bronze += 1
 
         self.user.save()
-
+	'''
         self.user.message_set.create(message=_(
                 """Congratulations, you have received a badge '%(badge_name)s'. <a href="%(badge_url)s">Find out who has it, too</a>."""
         ) % dict(
             badge_name=award.badge.name,
             badge_url=award.badge.get_absolute_url()))
+	'''
 
     def cancel_action(self):
         award = self.award
@@ -242,7 +245,9 @@ class SuspendAction(ActionProxy):
             u.is_active = True
             u._pop_suspension_cache()
             u.save()
+	    '''
             u.message_set.create(message=_("Your suspension has been removed."))
+	    '''
 
     def describe(self, viewer=None):
         if self.extra.get('bantype', 'indefinitely') == 'forxdays' and self.extra.get('forxdays', None):
